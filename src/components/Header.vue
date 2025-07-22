@@ -1,25 +1,25 @@
 <template>
-  <header class="w-full px-10 py-8 lg:px-10 relative z-50">
+  <header class="w-full px-10 py-8 lg:px-10 z-50 fixed top-0">
     <nav class="flex items-center justify-between">
       <!-- Logo -->
-      <div class="text-xl font-bold text-black">
+      <router-link to="/" class="text-xl font-bold text-black">
         $_DARONG
-      </div>
+      </router-link>
 
       <!-- Right side icons -->
       <div class="flex items-center space-x-4">
         <!-- Telegram icon -->
-        <a href="https://telegram.me/your-username" target="_blank" class="p-2 transition-colors">
+        <a href="https://telegram.me/your-username" target="_blank" class="p-2 transition-colors" aria-label="Telegram">
           <Icon icon="mdi:telegram" width="20" height="20" />
         </a>
 
         <!-- GitHub icon -->
-        <a href="https://github.com" target="_blank" class="p-2 transition-colors">
+        <a href="https://github.com" target="_blank" class="p-2 transition-colors" aria-label="GitHub">
           <Icon icon="mdi:github" width="20" height="20" />
         </a>
 
         <!-- Menu toggle button -->
-        <button @click="toggleMenu" class="p-2 cursor-pointer">
+        <button @click="toggleMenu" class="p-2 cursor-pointer" aria-label="Toggle Menu">
           <div class="menu-toggler text-right h-[25px] flex flex-col justify-between group" :class="{ 'menu-opened': isMenuOpen}">
             <div class="w-[50px] h-[3px] bg-gray-900 transition-all"></div>
             <div class="w-[30px] h-[3px] bg-gray-900 ml-auto transition-all"></div>
@@ -32,7 +32,7 @@
   <!-- Offcanvas -->
   <Transition name="offcanvas" @after-enter="animateMenuItems">
     <div v-if="isMenuOpen" class="fixed inset-0 bg-gray-800/50 z-40 h-full transition-all" @click="closeMenu">
-      <div class="absolute top-0 right-0 bg-green-600 px-10 py-8 lg:px-10 h-full w-full transition-all duration-700 ease-out" @click.stop>
+      <div class="absolute top-0 right-0 bg-green-500 px-10 py-8 lg:px-10 h-full w-full transition-all duration-700 ease-out" @click.stop>
         <ul class="relative top-[50%] -translate-y-[50%] text-5xl">
           <li 
             v-for="(item, index) in menuItems" 
