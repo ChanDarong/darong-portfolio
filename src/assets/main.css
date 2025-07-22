@@ -1,0 +1,10 @@
+@import './base.css';
+
+/* Custom utility class similar to Tailwind */
+.menu-toggler.menu-opened > div:first-child {
+  @apply -rotate-45 translate-y-2.5;
+}
+
+.menu-toggler.menu-opened > div:last-child {
+  @apply w-[50px] -translate-y-2.5 rotate-45;
+}
