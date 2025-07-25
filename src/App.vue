@@ -10,9 +10,9 @@
     <!-- Background Decorative Elements -->
     <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
       <img src="../public/images/cube.svg"  alt="cube background" class="absolute -top-20 -left-45 w-130 object-cover opacity-8" />
-      <div class="absolute top-1/4 right-1/4 w-64 h-64 bg-gray-100 dark:bg-gray-500/20 rounded-full opacity-30 transform rotate-12"></div>
+      <!-- <div class="absolute top-1/4 right-1/4 w-64 h-64 bg-gray-100 dark:bg-gray-500/20 rounded-full opacity-30 transform rotate-12"></div>
       <div class="absolute bottom-1/4 right-1/3 w-32 h-32 bg-green-100/25 dark:bg-green-600 rounded-full opacity-40"></div>
-      <div class="absolute top-1/2 right-1/6 w-48 h-48 bg-gray-50 dark:bg-green-400/20 rounded-full opacity-50"></div>
+      <div class="absolute top-1/2 right-1/6 w-48 h-48 bg-gray-50 dark:bg-green-400/20 rounded-full opacity-50"></div> -->
     </div>
   </div>
 </template>

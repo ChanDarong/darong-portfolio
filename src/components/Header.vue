@@ -1,5 +1,5 @@
 <template>
-  <header class="w-full px-10 py-8 lg:px-10 z-50 fixed top-0">
+  <header class="w-full px-5 py-4 lg:px-10 lg:py-8 z-50 fixed top-0">
     <nav class="flex items-center justify-between">
       <!-- Logo -->
       <router-link to="/" class="text-xl font-bold">
@@ -8,15 +8,15 @@
 
       <!-- Right side icons -->
       <div class="flex items-center space-x-4">
-        <!-- Telegram icon -->
-        <a href="https://telegram.me/your-username" target="_blank" class="p-2 transition-colors" aria-label="Telegram">
-          <Icon icon="mdi:telegram" width="20" height="20" />
-        </a>
-
-        <!-- GitHub icon -->
-        <a href="https://github.com" target="_blank" class="p-2 transition-colors" aria-label="GitHub">
-          <Icon icon="mdi:github" width="20" height="20" />
-        </a>
+        <!-- Social link -->
+        <div class="hidden sm:flex items-center space-x-2">
+          <a href="https://t.me/DarongCHAN" target="_blank" class="p-2 transition-colors" aria-label="Telegram">
+            <Icon icon="mdi:telegram" width="20" height="20" />
+          </a>
+          <a href="https://github.com/ChanDarong" target="_blank" class="p-2 transition-colors" aria-label="GitHub">
+            <Icon icon="mdi:github" width="20" height="20" />
+          </a>
+        </div>
 
         <!-- Theme toggle -->
         <ThemeToggle />
@@ -45,6 +45,17 @@
             :style="{ 'animation-delay': `${index * 0.1}s` }"
           >
             <a :href="item.href" @click="closeMenu">{{ item.name }}</a>
+          </li>
+          <li class="mt-10 text-center">
+            <!-- Social link -->
+            <div class="flex sm:hidden justify-center space-x-2">
+              <a href="https://t.me/DarongCHAN" target="_blank" class="p-2 transition-colors" aria-label="Telegram">
+                <Icon icon="mdi:telegram" width="20" height="20" />
+              </a>
+              <a href="https://github.com/ChanDarong" target="_blank" class="p-2 transition-colors" aria-label="GitHub">
+                <Icon icon="mdi:github" width="20" height="20" />
+              </a>
+            </div>
           </li>
         </ul>
       </div>

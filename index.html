@@ -6,6 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vite App</title>
 
+    <style>
+      /* Prevent flash of unstyled content */
+      html {
+        background-color: oklch(98.7% 0.022 95.277);
+        color: #000000;
+      }
+      html.dark {
+        background-color: #0f172a;
+        color: #ffffff;
+      }
+    </style>
+
     <script>
       // Apply theme before page renders to prevent flash
       (function() {
