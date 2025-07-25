@@ -6,12 +6,17 @@ import AboutSection from '@/components/home/AboutSection.vue'
 const currentSection = ref(0)
 const sections = ref([])
 const isScrolling = ref(false)
-const isPageLoaded = ref(false) // New state for page loading
-const isInitialLoad = ref(true) // Track if this is the first time loading
+const isPageLoaded = ref(false)
+const isInitialLoad = ref(true)
+
+// Touch handling variables - ADD THESE
+const touchStartY = ref(0)
+const touchEndY = ref(0)
+const minSwipeDistance = 10
 
 // Animation states for each section
 const sectionAnimations = ref([
-  { active: false, delay: 0 }, // Changed to false initially
+  { active: false, delay: 0 },
   { active: false, delay: 0 }
 ])
 
@@ -20,7 +25,7 @@ const activateSection = (index) => {
 
   isScrolling.value = true
   currentSection.value = index
-  isInitialLoad.value = false // No longer initial load after first navigation
+  isInitialLoad.value = false
 
   // Reset all sections
   sectionAnimations.value.forEach(section => section.active = false)
@@ -33,7 +38,7 @@ const activateSection = (index) => {
 }
 
 const handleWheel = (e) => {
-  if (isScrolling.value || !isPageLoaded.value) { // Prevent scroll during loading
+  if (isScrolling.value || !isPageLoaded.value) {
     e.preventDefault()
     return
   }
@@ -41,16 +46,14 @@ const handleWheel = (e) => {
   e.preventDefault()
 
   if (e.deltaY > 0 && currentSection.value < sectionAnimations.value.length - 1) {
-    // Scroll down
     activateSection(currentSection.value + 1)
   } else if (e.deltaY < 0 && currentSection.value > 0) {
-    // Scroll up
     activateSection(currentSection.value - 1)
   }
 }
 
 const handleKeydown = (e) => {
-  if (!isPageLoaded.value) return // Prevent key navigation during loading
+  if (!isPageLoaded.value) return
 
   if (e.key === 'ArrowDown' && currentSection.value < sectionAnimations.value.length - 1) {
     activateSection(currentSection.value + 1)
@@ -59,7 +62,36 @@ const handleKeydown = (e) => {
   }
 }
 
-// New function to trigger initial page load animation
+// Touch event handlers
+const handleTouchStart = (e) => {
+  touchStartY.value = e.touches[0].clientY
+}
+
+const handleTouchMove = (e) => {
+  if (isScrolling.value || !isPageLoaded.value) {
+    e.preventDefault()
+    return
+  }
+  e.preventDefault()
+}
+
+const handleTouchEnd = (e) => {
+  if (isScrolling.value || !isPageLoaded.value) return
+
+  touchEndY.value = e.changedTouches[0].clientY
+  const swipeDistance = touchStartY.value - touchEndY.value
+
+  if (Math.abs(swipeDistance) < minSwipeDistance) return
+
+  if (swipeDistance > 0 && currentSection.value < sectionAnimations.value.length - 1) {
+    // Swipe up - go to next section
+    activateSection(currentSection.value + 1)
+  } else if (swipeDistance < 0 && currentSection.value > 0) {
+    // Swipe down - go to previous section
+    activateSection(currentSection.value - 1)
+  }
+}
+
 const animatePageLoad = () => {
   // Small delay to ensure page is rendered
   setTimeout(() => {
@@ -76,6 +108,11 @@ onMounted(() => {
   window.addEventListener('wheel', handleWheel, { passive: false })
   window.addEventListener('keydown', handleKeydown)
 
+  // ADD TOUCH EVENT LISTENERS
+  window.addEventListener('touchstart', handleTouchStart, { passive: true })
+  window.addEventListener('touchmove', handleTouchMove, { passive: false })
+  window.addEventListener('touchend', handleTouchEnd, { passive: true })
+
   // Trigger page load animation
   animatePageLoad()
 })
@@ -87,6 +124,11 @@ onUnmounted(() => {
   // Remove event listeners
   window.removeEventListener('wheel', handleWheel)
   window.removeEventListener('keydown', handleKeydown)
+
+  // REMOVE TOUCH EVENT LISTENERS
+  window.removeEventListener('touchstart', handleTouchStart)
+  window.removeEventListener('touchmove', handleTouchMove)
+  window.removeEventListener('touchend', handleTouchEnd)
 })
 </script>
 
@@ -149,7 +191,7 @@ onUnmounted(() => {
 
     <!-- Scroll Hint -->
     <div
-      class="fixed bottom-0 left-4 sm:left-8 flex flex-col items-center text-gray-500 transition-all duration-700"
+      class="fixed bottom-0 right-4 left-auto sm:left-8 sm:right-auto flex flex-col items-center text-gray-500 transition-all duration-700"
       :class="{
         'translate-y-0': isPageLoaded && !isScrolling,
         'translate-y-100 delay-0': isScrolling || sectionAnimations[1]?.active
