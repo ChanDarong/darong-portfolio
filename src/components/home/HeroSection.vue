@@ -100,7 +100,7 @@ const props = defineProps({
           'opacity-0 translate-y-16': !sectionAnimations[0].active || !isPageLoaded
         }"
       >
-        <a href="https://darong.vercel.app" target="_blank" class="inline-block">
+        <a href="https://darong-blog.vercel.app" target="_blank" class="inline-block">
           <div class="relative inline-block group focus:outline-none focus:ring cursor-pointer">
             <span class="absolute inset-0 transition-transform translate-x-0 translate-y-0 group-hover:translate-y-1.5 group-hover:translate-x-1.5 bg-green-400 dark:bg-green-600">
             </span>
