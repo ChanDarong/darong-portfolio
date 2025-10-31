@@ -2,6 +2,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import HeroSection from '@/components/home/HeroSection.vue'
 import AboutSection from '@/components/home/AboutSection.vue'
+import ContactSection from '@/components/home/ContactSection.vue'
 
 const currentSection = ref(0)
 const sections = ref([])
@@ -16,6 +17,7 @@ const minSwipeDistance = 10
 
 // Animation states for each section
 const sectionAnimations = ref([
+  { active: false, delay: 0 },
   { active: false, delay: 0 },
   { active: false, delay: 0 }
 ])
@@ -183,6 +185,13 @@ onUnmounted(() => {
 
       <!-- Section 2: About/Skills -->
       <AboutSection
+        :isPageLoaded="isPageLoaded"
+        :sectionAnimations="sectionAnimations"
+        :isInitialLoad="isInitialLoad"
+      />
+
+      <!-- Section 3: Contact -->
+       <ContactSection
         :isPageLoaded="isPageLoaded"
         :sectionAnimations="sectionAnimations"
         :isInitialLoad="isInitialLoad"
