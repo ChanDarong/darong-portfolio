@@ -17,23 +17,27 @@ const props = defineProps({
   }
 })
 
+const dob = new Date(2002, 9, 26);
+
+const dobString = '26 October 2002';
+
 const age = computed(() => {
   const currentYear = new Date().getFullYear();
-  return currentYear - 2002 + ' years old';
+  return currentYear - dob.getFullYear() + ' years old';
 });
 
 const aboutMeList = ref([
   {
     icon: 'solar:code-square-linear',
-    text: 'A Laravel developer / Web developer.',
+    text: 'A Laravel developer / Web developer',
   },
   {
     icon: 'solar:map-point-linear',
-    text: 'Currently live in Siem Reap, Cambodia.',
+    text: 'Currently live in Siem Reap, Cambodia',
   },
   {
     icon: 'solar:calendar-linear',
-    text: age.value,
+    text: dobString + ' (' + age.value + ')',
   },
   {
     icon: 'solar:heart-linear',
