@@ -3,7 +3,7 @@
     <!-- Navigation Header -->
     <Header/>
 
-    <main class="flex-1 px-6 lg:px-12 relative z-1">
+    <main class="flex-1 relative z-1">
       <router-view />
     </main>
 
