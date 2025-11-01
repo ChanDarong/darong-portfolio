@@ -10,10 +10,15 @@ const isScrolling = ref(false)
 const isPageLoaded = ref(false)
 const isInitialLoad = ref(true)
 
-// Touch handling variables - ADD THESE
+// Touch handling variables
 const touchStartY = ref(0)
 const touchEndY = ref(0)
-const minSwipeDistance = 10
+const minSwipeDistance = 50
+const isTouching = ref(false)
+
+// Wheel scroll accumulation
+let wheelDelta = 0
+const wheelThreshold = 50 // Minimum accumulated scroll to trigger navigation
 
 // Animation states for each section
 const sectionAnimations = ref([
@@ -29,13 +34,18 @@ const activateSection = (index) => {
   currentSection.value = index
   isInitialLoad.value = false
 
+  // Reset wheel delta
+  wheelDelta = 0
+
   // Reset all sections
   sectionAnimations.value.forEach(section => section.active = false)
 
   // Activate current section with delay
   setTimeout(() => {
     sectionAnimations.value[index].active = true
-    isScrolling.value = false
+    setTimeout(() => {
+      isScrolling.value = false
+    }, 800)
   }, 50)
 }
 
@@ -47,15 +57,25 @@ const handleWheel = (e) => {
 
   e.preventDefault()
 
-  if (e.deltaY > 0 && currentSection.value < sectionAnimations.value.length - 1) {
+  // Accumulate wheel delta
+  wheelDelta += e.deltaY
+
+  // Check if threshold is met
+  if (Math.abs(wheelDelta) < wheelThreshold) return
+
+  // Determine direction and navigate
+  if (wheelDelta > 0 && currentSection.value < sectionAnimations.value.length - 1) {
     activateSection(currentSection.value + 1)
-  } else if (e.deltaY < 0 && currentSection.value > 0) {
+  } else if (wheelDelta < 0 && currentSection.value > 0) {
     activateSection(currentSection.value - 1)
+  } else {
+    // Reset if at boundary
+    wheelDelta = 0
   }
 }
 
 const handleKeydown = (e) => {
-  if (!isPageLoaded.value) return
+  if (!isPageLoaded.value || isScrolling.value) return
 
   if (e.key === 'ArrowDown' && currentSection.value < sectionAnimations.value.length - 1) {
     activateSection(currentSection.value + 1)
@@ -66,23 +86,32 @@ const handleKeydown = (e) => {
 
 // Touch event handlers
 const handleTouchStart = (e) => {
+  if (isScrolling.value) return
+  isTouching.value = true
   touchStartY.value = e.touches[0].clientY
+  touchEndY.value = touchStartY.value
 }
 
 const handleTouchMove = (e) => {
-  if (isScrolling.value || !isPageLoaded.value) {
+  if (!isTouching.value || isScrolling.value || !isPageLoaded.value) {
     e.preventDefault()
     return
   }
+
+  touchEndY.value = e.touches[0].clientY
   e.preventDefault()
 }
 
 const handleTouchEnd = (e) => {
-  if (isScrolling.value || !isPageLoaded.value) return
+  if (!isTouching.value || isScrolling.value || !isPageLoaded.value) {
+    isTouching.value = false
+    return
+  }
 
-  touchEndY.value = e.changedTouches[0].clientY
+  isTouching.value = false
   const swipeDistance = touchStartY.value - touchEndY.value
 
+  // Check if swipe distance meets minimum threshold
   if (Math.abs(swipeDistance) < minSwipeDistance) return
 
   if (swipeDistance > 0 && currentSection.value < sectionAnimations.value.length - 1) {
@@ -92,14 +121,17 @@ const handleTouchEnd = (e) => {
     // Swipe down - go to previous section
     activateSection(currentSection.value - 1)
   }
+
+  // Reset touch positions
+  touchStartY.value = 0
+  touchEndY.value = 0
 }
 
 const animatePageLoad = () => {
-  // Small delay to ensure page is rendered
   setTimeout(() => {
     isPageLoaded.value = true
     sectionAnimations.value[0].active = true
-  }, 200) // 300ms delay for initial load
+  }, 200)
 }
 
 onMounted(() => {
@@ -110,10 +142,10 @@ onMounted(() => {
   window.addEventListener('wheel', handleWheel, { passive: false })
   window.addEventListener('keydown', handleKeydown)
 
-  // ADD TOUCH EVENT LISTENERS
-  window.addEventListener('touchstart', handleTouchStart, { passive: true })
+  // Touch event listeners
+  window.addEventListener('touchstart', handleTouchStart, { passive: false })
   window.addEventListener('touchmove', handleTouchMove, { passive: false })
-  window.addEventListener('touchend', handleTouchEnd, { passive: true })
+  window.addEventListener('touchend', handleTouchEnd, { passive: false })
 
   // Trigger page load animation
   animatePageLoad()
@@ -126,8 +158,6 @@ onUnmounted(() => {
   // Remove event listeners
   window.removeEventListener('wheel', handleWheel)
   window.removeEventListener('keydown', handleKeydown)
-
-  // REMOVE TOUCH EVENT LISTENERS
   window.removeEventListener('touchstart', handleTouchStart)
   window.removeEventListener('touchmove', handleTouchMove)
   window.removeEventListener('touchend', handleTouchEnd)
@@ -203,7 +233,7 @@ onUnmounted(() => {
       class="fixed bottom-0 right-4 left-auto sm:left-8 sm:right-auto flex flex-col items-center text-gray-500 transition-all duration-700"
       :class="{
         'translate-y-0': isPageLoaded && !isScrolling,
-        'translate-y-100 delay-0': isScrolling || sectionAnimations[1]?.active
+        'translate-y-100 delay-0': isScrolling || sectionAnimations[1]?.active || sectionAnimations[2]?.active
       }"
     >
       <div class="text-xs font-light tracking-widest mb-4 transform writing-mode-vertical dark:text-gray-200" style="writing-mode: vertical-rl; text-orientation: mixed;">

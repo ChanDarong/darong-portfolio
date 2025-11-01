@@ -75,7 +75,7 @@ const aboutMeList = ref([
             'opacity-0 -translate-x-32': !sectionAnimations[1].active
           }"
         >
-          <h1 class="uppercase text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight">Who am I?</h1>
+          <h1 class="uppercase text-2xl sm:text-3xl lg:text-4xl xl:text-5xl leading-tight">Who am I</h1>
         </div>
 
         <!-- Separator Lines -->
