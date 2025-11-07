@@ -176,7 +176,7 @@ onUnmounted(() => {
 
     <!-- Section Indicators - Center Left, only on first section -->
     <div
-      class="fixed top-1/2 -translate-y-1/2 right-4 left-auto sm:left-8 sm:right-auto z-50 flex flex-col space-y-4 transition-opacity duration-700 delay-1500"
+      class="fixed top-1/2 -translate-y-1/2 right-4 hidden sm:left-8 sm:right-auto z-50 sm:flex flex-col space-y-4 transition-opacity duration-700 delay-1500"
       :class="{
         'opacity-100': isPageLoaded,
         'opacity-0': !isPageLoaded
