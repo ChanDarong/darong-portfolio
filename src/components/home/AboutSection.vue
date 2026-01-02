@@ -50,7 +50,7 @@ const aboutMeList = ref([
 <template>
   <section class="section bg-white dark:bg-black min-h-screen flex items-center justify-start px-6 sm:px-10 lg:px-15 xl:px-30 relative">
     <div 
-      class="absolute w-full h-3/6 bg-gray-200 dark:bg-gray-600 transition-all ease-out duration-700 delay-500 z-0 max-md:mt-20"
+      class="absolute w-full h-3/6 bg-gray-200 dark:bg-gray-600 transition-all ease-in-out duration-700 delay-500 z-0 max-md:mt-20"
       :class="{
         'opacity-100 translate-x-0': sectionAnimations[1].active,
         'opacity-0 translate-x-300': !sectionAnimations[1].active
@@ -147,7 +147,7 @@ const aboutMeList = ref([
               'opacity-0 translate-y-16': !sectionAnimations[1].active || !isPageLoaded
             }"
           >
-            <a href="https://darong.vercel.app" target="_blank" class="inline-block">
+            <router-link to="/about" class="inline-block">
               <div class="relative inline-block group focus:outline-none focus:ring cursor-pointer">
                 <span class="absolute inset-0 transition-transform translate-x-0 translate-y-0 group-hover:translate-y-1.5 group-hover:translate-x-1.5 bg-green-400 dark:bg-green-600">
                 </span>
@@ -155,7 +155,7 @@ const aboutMeList = ref([
                   My story
                 </span>
               </div>
-            </a>
+            </router-link>
           </div>
         </div>
       </div>
