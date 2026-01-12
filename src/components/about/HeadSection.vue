@@ -15,8 +15,8 @@ onMounted(() => {
 <template>
     <div class="absolute w-full z-0 transition-all duration-700 delay-500 ease-in-out"
         :class="{
-            'h-1/2 top-0 bg-green-400 dark:bg-green-900': isAnimated,
-            'h-3/6 top-1/2 -translate-y-1/2 bg-gray-200 dark:bg-gray-600': !isAnimated,
+            'h-[50vh] top-0 bg-green-400 dark:bg-green-900': isAnimated,
+            'top-[50vh] -translate-y-1/2 bg-gray-200 dark:bg-gray-600': !isAnimated,
         }"
     >
         <h1 class="text-7xl font-bold text-center relative transition-all duration-500 delay-700 ease-in-out"
