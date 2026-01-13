@@ -12,15 +12,15 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="mt-[65vh] px-6 sm:px-10 lg:px-16 pb-16 transition-all duration-700 delay-900 ease-in-out"
+    <div class="mt-[55vh] sm:mt-[56vh] lg:mt-[60vh] px-6 sm:px-10 lg:px-16 pb-16 transition-all duration-700 delay-900 ease-in-out"
         :class="{
             'opacity-100': isAnimated,
             'opacity-0': !isAnimated,
         }"
     >
-        <h2 class="text-5xl uppercase">Who I Am</h2>
-        <div class="relative z-10 flex flex-row w-full">
-            <div class="w-1/2">
+        <h2 class="text-2xl sm:text-3xl lg:text-5xl uppercase">Who I Am</h2>
+        <div class="relative z-10 flex flex-col md:flex-row w-full">
+            <div class="w-full md:w-1/2">
                 <div class="my-10">
                     <p class="mb-3">
                         Hello! My name is CHAN Darong, I was born on 26 September 2002.
@@ -33,12 +33,12 @@ onMounted(() => {
                     </p>
                 </div>
             </div>
-            <div class="w-1/2 text-lg leading-relaxed">
+            <div class="w-full md:w-1/2 text-lg leading-relaxed">
                 <div class="w-2/3 mx-auto">
-                    <div class="outline-1 outline-offset-6 outline-dashed outline-gray-400">
-                        <img src="../../../public/images/myimage.png" alt="My Photo" class="w-full h-auto">
+                    <div class="outline-1 dark:outline-black shadow-[5px_5px_0px_rgba(0,0,0)] dark:shadow-[5px_5px_0px_rgba(255,255,255)]">
+                        <img src="../../assets/myimage.png" alt="My Photo" class="w-full h-auto">
                     </div>
-                    <p class="text-gray-500 mt-3 text-sm max-md:hidden">
+                    <p class="text-gray-500 mt-3 text-sm">
                         <i>This photo is taken at BBU graduation ceremony, 09 Feb 2025</i>
                     </p>
                 </div>

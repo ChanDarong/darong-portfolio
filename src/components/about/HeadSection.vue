@@ -15,11 +15,11 @@ onMounted(() => {
 <template>
     <div class="absolute w-full z-0 transition-all duration-700 delay-500 ease-in-out"
         :class="{
-            'h-[50vh] top-0 bg-green-400 dark:bg-green-900': isAnimated,
+            'h-[50vh] top-0 bg-green-400 dark:bg-green-900 shadow-[3px_3px_0px_rgba(0,0,0)] dark:shadow-[3px_3px_0px_rgba(255,255,255)]': isAnimated,
             'top-[50vh] -translate-y-1/2 bg-gray-200 dark:bg-gray-600': !isAnimated,
         }"
     >
-        <h1 class="text-7xl font-bold text-center relative transition-all duration-500 delay-700 ease-in-out"
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-center relative transition-all duration-500 delay-700 ease-in-out"
             :class="{
                 'top-1/2 -translate-y-1/2': isAnimated,
                 'top-20 opacity-0': !isAnimated,
@@ -27,22 +27,5 @@ onMounted(() => {
         >
             About Me
         </h1>
-
-        <div class="absolute w-full flex transition-bottom duration-500 delay-1200 ease-in-out"
-            :class="{
-                'opacity-100 bottom-0': isAnimated,
-                'opacity-0 -bottom-10': !isAnimated,
-            }"
-        >
-            <div
-                v-for="i in 15" class="w-1/15 h-10"
-                :key="i"
-                :class="{
-                    'bg-white inset-shadow-[5px_5px_0px]': !(i % 2),
-                    'bg-green-400 dark:bg-black shadow-[5px_5px_0px]': i % 2
-                }"
-            >
-            </div>
-        </div>
     </div>
 </template>

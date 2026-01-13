@@ -2,7 +2,7 @@
   <header class="w-full px-5 py-4 lg:px-10 lg:py-8 z-50 fixed top-0">
     <nav class="flex items-center justify-between">
       <!-- Logo -->
-      <router-link to="/" class="text-xl font-bold">
+      <router-link to="/" class="text-2xl">
         $_DARONG
       </router-link>
 

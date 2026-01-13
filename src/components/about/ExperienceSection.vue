@@ -45,22 +45,22 @@ const education = ref([
 
 <template>
     <div class="px-6 sm:px-10 lg:px-16 pb-16">
-        <h2 class="text-5xl capitalize mb-12">Working Experience</h2>
+        <h2 class="text-2xl sm:text-3xl lg:text-5xl capitalize mb-12">Working Experience</h2>
         <div class="w-full flex justify-center">
             <div class="max-w-4xl">
                 <!-- Experience Items -->
                 <div 
                     v-for="(exp, index) in experiences" 
                     :key="index" 
-                    class="group mb-12 grid grid-cols-[220px_1fr] gap-4 hover:!opacity-100 group-hover:[&:not(:hover)]:opacity-50 transition-all duration-300"
+                    class="group mb-12 flex flex-col md:flex-row gap-1 md:gap-4 hover:!opacity-100 group-hover:[&:not(:hover)]:opacity-50 transition-all duration-300"
                 >
                     <!-- Date (Left Column) -->
-                    <div class="text-xs font-semibold capitalize tracking-wide text-gray-500 dark:text-gray-400 pt-1">
+                    <div class="text-xs md:w-[200px] font-semibold capitalize tracking-wide text-gray-500 dark:text-gray-400 pt-1">
                         {{ exp.date }}
                     </div>
                     
                     <!-- Content (Right Column) -->
-                    <div>
+                    <div class="md:flex-1">
                         <!-- Title & Company -->
                         <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2 group-hover:text-emerald-500 dark:group-hover:text-emerald-400 transition-colors">
                             {{ exp.title }} · {{ exp.company }}
@@ -87,22 +87,22 @@ const education = ref([
         </div>
 
         <!-- Education Section -->
-        <h2 class="text-5xl capitalize mb-12 mt-20">Education</h2>
+        <h2 class="text-2xl sm:text-3xl lg:text-5xl capitalize mb-12 mt-20">Education</h2>
         <div class="w-full flex justify-center">
             <div class="max-w-4xl">
                 <!-- Education Items -->
                 <div 
                     v-for="(edu, index) in education" 
                     :key="index" 
-                    class="group mb-12 grid grid-cols-[220px_1fr] gap-4 hover:!opacity-100 group-hover:[&:not(:hover)]:opacity-50 transition-all duration-300"
+                    class="group mb-12 flex flex-col md:flex-row gap-1 md:gap-4 hover:!opacity-100 group-hover:[&:not(:hover)]:opacity-50 transition-all duration-300"
                 >
                     <!-- Date (Left Column) -->
-                    <div class="text-xs font-semibold capitalize tracking-wide text-gray-500 dark:text-gray-400 pt-1">
+                    <div class="text-xs md:w-[200px] font-semibold capitalize tracking-wide text-gray-500 dark:text-gray-400 pt-1">
                         {{ edu.date }}
                     </div>
                     
                     <!-- Content (Right Column) -->
-                    <div>
+                    <div class="md:flex-1">
                         <!-- Title & School -->
                         <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2 group-hover:text-emerald-500 dark:group-hover:text-emerald-400 transition-colors">
                             {{ edu.title }} · {{ edu.school }}
