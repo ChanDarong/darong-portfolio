@@ -35,11 +35,11 @@ onMounted(() => {
             </div>
             <div class="w-full md:w-1/2 text-lg leading-relaxed">
                 <div class="w-2/3 mx-auto">
-                    <div class="outline-1 dark:outline-black shadow-[5px_5px_0px_rgba(0,0,0)] dark:shadow-[5px_5px_0px_rgba(255,255,255)]">
+                    <div class="outline-1 dark:outline-2 dark:outline-black shadow-[5px_5px_0px_rgba(0,0,0)] dark:shadow-[5px_5px_0px_#00D492]">
                         <img src="../../assets/myimage.png" alt="My Photo" class="w-full h-auto">
                     </div>
                     <p class="text-gray-500 mt-3 text-sm">
-                        <i>This photo is taken at BBU graduation ceremony, 09 Feb 2025</i>
+                        <i>BBU graduation ceremony, 09 Feb 2025 (PH Grand Hall)</i>
                     </p>
                 </div>
             </div>

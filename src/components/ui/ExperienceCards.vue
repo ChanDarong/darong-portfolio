@@ -8,7 +8,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <div  class="group mb-6 flex flex-col md:flex-row gap-1 md:gap-4 hover:!opacity-100 group-hover:[&:not(:hover)]:opacity-50 px-6 py-4 hover:outline-2 hover:bg-green-50">
+    <div  class="group mb-6 flex flex-col md:flex-row gap-1 md:gap-4 hover:!opacity-100 group-hover:[&:not(:hover)]:opacity-50 px-6 py-4 hover:outline-2 hover:bg-green-50 dark:hover:outline-1 dark:hover:bg-green-900/20 transition-all duration-300">
         <!-- Date (Left Column) -->
         <div class="text-xs md:w-[200px] font-semibold capitalize tracking-wide text-gray-500 dark:text-gray-400 pt-1">
             {{ exp.date }}
@@ -18,7 +18,7 @@ const props = defineProps({
         <div class="md:flex-1">
             <!-- Title & Company -->
             <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2 group-hover:text-emerald-500 dark:group-hover:text-emerald-400 transition-colors">
-                {{ exp.title }} · {{ exp.company }}
+                {{ exp.title }} {{ exp.company ? '·' : '' }} {{ exp.company }}
             </h3>
             
             <!-- Description -->
