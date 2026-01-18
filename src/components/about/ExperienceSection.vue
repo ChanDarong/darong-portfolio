@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import ExperienceCards from '../ui/ExperienceCards.vue';
+import AboutHeading from '../ui/AboutHeading.vue';
 
 const experiences = ref([
     {
@@ -46,7 +47,7 @@ const education = ref([
 
 <template>
     <div class="px-6 sm:px-10 lg:px-16 pb-16">
-        <h2 class="text-2xl sm:text-3xl lg:text-5xl capitalize mb-12">Working Experience</h2>
+        <AboutHeading>Working Experience</AboutHeading>
         <div class="w-full flex justify-center">
             <div class="max-w-4xl">
                 <!-- Experience Items -->
@@ -59,7 +60,7 @@ const education = ref([
         </div>
 
         <!-- Education Section -->
-        <h2 class="text-2xl sm:text-3xl lg:text-5xl capitalize mb-12 mt-20">Education</h2>
+        <AboutHeading class="mt-20">Education</AboutHeading>
         <div class="w-full flex justify-center">
             <div class="max-w-4xl">
                 <!-- Education Items -->

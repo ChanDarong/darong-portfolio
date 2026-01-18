@@ -8,7 +8,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <div  class="group mb-6 flex flex-col md:flex-row gap-1 md:gap-4 hover:!opacity-100 group-hover:[&:not(:hover)]:opacity-50 px-6 py-4 hover:outline-2 hover:bg-green-50 dark:hover:outline-1 dark:hover:bg-green-900/20 transition-all duration-300">
+    <div  class="group mb-6 flex flex-col md:flex-row gap-1 md:gap-4 hover:!opacity-100 group-hover:[&:not(:hover)]:opacity-50 px-6 py-4 hover:outline-2 hover:bg-gray-50 dark:hover:outline-1 dark:hover:bg-green-900/20">
         <!-- Date (Left Column) -->
         <div class="text-xs md:w-[200px] font-semibold capitalize tracking-wide text-gray-500 dark:text-gray-400 pt-1">
             {{ exp.date }}
@@ -31,7 +31,7 @@ const props = defineProps({
                 <span 
                     v-for="(skill, skillIndex) in exp.skills" 
                     :key="skillIndex"
-                    class="px-3 py-1 text-xs font-medium bg-emerald-400/10 dark:bg-emerald-400/10 text-emerald-600 dark:text-emerald-400"
+                    class="px-3 py-1 text-xs font-medium bg-gray-400/10 dark:bg-emerald-400/10 text-gray-600 dark:text-emerald-400 border border-gray-emerald-300"
                 >
                     {{ skill }}
                 </span>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import ExperienceSection from '@/components/about/ExperienceSection.vue';
 import HeadSection from '@/components/about/HeadSection.vue';
+import Skill from '@/components/about/Skill.vue';
 import WhoIAmSection from '@/components/about/WhoIAmSection.vue';
 
 </script>
@@ -18,8 +19,8 @@ import WhoIAmSection from '@/components/about/WhoIAmSection.vue';
 
       <div class="container mx-auto">
         <WhoIAmSection />
-  
         <ExperienceSection />
+        <Skill />
       </div>
     </div>
   </div>

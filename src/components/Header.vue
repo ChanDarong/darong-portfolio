@@ -73,7 +73,7 @@ const showMenuItems = ref(false)
 const isDarkMode = ref(false)
 
 const menuItems = [
-  { name: 'About', href: '#about' },
+  { name: 'About', href: '/about' },
   { name: 'Resume', href: '#resume' },
   { name: 'Projects', href: '#projects' },
   { name: 'Blogs', href: '#blogs' },

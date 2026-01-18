@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue';
+import AboutHeading from '../ui/AboutHeading.vue';
 
 const isAnimated = ref(false);
 
@@ -18,15 +19,12 @@ onMounted(() => {
             'opacity-0': !isAnimated,
         }"
     >
-        <h2 class="text-2xl sm:text-3xl lg:text-5xl uppercase">Who I Am</h2>
+        <AboutHeading class="uppercase">Who I Am</AboutHeading>
         <div class="relative z-10 flex flex-col md:flex-row w-full">
             <div class="w-full md:w-1/2">
-                <div class="my-10">
+                <div class="my-3 md:my-10 max-md:mb-5">
                     <p class="mb-3">
-                        Hello! My name is CHAN Darong, I was born on 26 September 2002.
-                    </p>
-                    <p class="mb-3">
-                        I'm a web developer specializing in Laravel. I build websites, systems, and APIs with a focus on functionality, structure, and maintainability. I comfortable working with backend systems and database structures, with a strong focus on delivering reliable and efficient code. I enjoy solving complex problems and continuously improving existing systems.
+                        Hello! My name is CHAN Darong. I'm a web developer specializing in Laravel. I build websites, systems, and APIs with a focus on functionality, structure, and maintainability. I comfortable working with backend systems and database structures, with a strong focus on delivering reliable and efficient code. I enjoy solving complex problems and continuously improving existing systems.
                     </p>
                     <p class="mb-3">
                         Currently, I'm working full-time as a Laravel developer in Siem Reap, Cambodia. I contribute to the creation and maintenance of web applications, ensuring they meet high standards of performance and reliability.
@@ -35,8 +33,10 @@ onMounted(() => {
             </div>
             <div class="w-full md:w-1/2 text-lg leading-relaxed">
                 <div class="w-2/3 mx-auto">
-                    <div class="outline-1 dark:outline-2 dark:outline-black shadow-[5px_5px_0px_rgba(0,0,0)] dark:shadow-[5px_5px_0px_#00D492]">
-                        <img src="../../assets/myimage.png" alt="My Photo" class="w-full h-auto">
+                    <div class="outline-1 dark:outline-2 dark:outline-black shadow-[5px_5px_0px_rgba(0,0,0)] dark:shadow-[5px_5px_0px_#00D492] bg-emerald-200">
+                        <div class="grayscale-90 contrast-90 mix-blend-multiply hover:grayscale-0 hover:contrast-100 hover:mix-blend-normal transition-all duration-500">
+                            <img src="../../assets/myimage.png" alt="My Photo" class="w-full h-auto">
+                        </div>
                     </div>
                     <p class="text-gray-500 mt-3 text-sm">
                         <i>BBU graduation ceremony, 09 Feb 2025 (PH Grand Hall)</i>

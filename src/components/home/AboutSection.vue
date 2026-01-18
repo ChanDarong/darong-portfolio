@@ -19,7 +19,7 @@ const props = defineProps({
 
 const dob = new Date(2002, 9, 26);
 
-const dobString = '26 October 2002';
+const dobString = '26 September 2002';
 
 const age = computed(() => {
   const currentYear = new Date().getFullYear();
@@ -62,7 +62,7 @@ const aboutMeList = ref([
           <img src="https://picsum.photos/800" alt="Darong Profile">
         </div>
         <p class="text-gray-500 mt-3 max-md:hidden">
-          <i>I don't know what to put here, so don't ask me what is it!</i>
+          <i>A random picture</i>
         </p>
       </div>
       <div class="w-full lg:w-2/5 ml-10 max-md:ml-0 max-md:px-5 flex items-center">
