@@ -1,6 +1,7 @@
 const en = {
     message: {
         greet: 'Hello',
+        scrollDown: 'SCROLL DOWN',
         // Header & Navigation
         menu: {
             about: 'About',

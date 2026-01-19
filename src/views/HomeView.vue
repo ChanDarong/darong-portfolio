@@ -245,7 +245,7 @@ onUnmounted(() => {
       }"
     >
       <div class="text-xs font-light tracking-widest mb-4 transform writing-mode-vertical dark:text-gray-200" style="writing-mode: vertical-rl; text-orientation: mixed;">
-        SCROLL DOWN
+        {{ $t('scrollDown') }}
       </div>
       <div class="w-px h-16 bg-gray-400 dark:bg-gray-200"></div>
     </div>

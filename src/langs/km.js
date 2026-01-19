@@ -1,6 +1,7 @@
 const km = {
     message: {
         greet: 'សួស្តី',
+        scrollDown: 'អូសចុះក្រោម',
         // Header & Navigation
         menu: {
             about: 'អំពីខ្ញុំ',
