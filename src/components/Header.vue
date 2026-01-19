@@ -18,6 +18,9 @@
           </a>
         </div>
 
+        <!-- Language switcher -->
+        <LanguageSwitcher />
+
         <!-- Theme toggle -->
         <ThemeToggle />
 
@@ -64,21 +67,25 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { Icon } from '@iconify/vue'
 import ThemeToggle from './ThemeToggle.vue'
+import LanguageSwitcher from './LanguageSwitcher.vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const isMenuOpen = ref(false)
 const showMenuItems = ref(false)
 const isDarkMode = ref(false)
 
-const menuItems = [
-  { name: 'About', href: '/about' },
-  { name: 'Resume', href: '#resume' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Blogs', href: '#blogs' },
-  { name: 'Contact', href: '#contact' }
-]
+const menuItems = computed(() => [
+  { name: t('menu.about'), href: '/about' },
+  { name: t('menu.resume'), href: '#resume' },
+  { name: t('menu.projects'), href: '#projects' },
+  { name: t('menu.blogs'), href: '#blogs' },
+  { name: t('menu.contact'), href: '#contact' }
+])
 
 const toggleMenu = () => {
   if (isMenuOpen.value) {

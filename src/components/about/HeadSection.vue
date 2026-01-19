@@ -33,14 +33,14 @@ onMounted(() => {
                 }"
             ></div>
             
-            <div class="top-1/2 -translate-y-1/2 text-sm sm:text-base lg:text-lg leading-relaxed overflow-y-hidden relative z-10">
+            <div class="top-1/2 -translate-y-1/2 text-sm sm:text-base lg:text-lg leading-relaxed overflow-y-hidden overflow-x-hidden relative py-7 z-10">
                 <h1 class="retro-text text-5xl md:text-6xl lg:text-7xl font-bold text-center relative transition-all duration-700 delay-1000 ease-in-out uppercase tracking-wider"
                     :class="{
                         'translate-y-0': isAnimated,
                         'translate-y-30': !isAnimated,
                     }"
                 >
-                    About Me
+                    {{ $t('aboutPage.title') }}
                 </h1>
             </div>
             

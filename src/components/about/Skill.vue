@@ -41,8 +41,8 @@ const skills = ref([
 
 <template>
     <div class="px-6 sm:px-10 lg:px-16 pb-16">
-        <AboutHeading>Skills</AboutHeading>
-        <p class="mb-5">Here are a few technologies I've been working with recently</p>
+        <AboutHeading>{{ $t('aboutPage.skills.title') }}</AboutHeading>
+        <p class="mb-5">{{ $t('aboutPage.skills.subtitle') }}</p>
         
         <div class="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
             <div 

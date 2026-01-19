@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import ExperienceCards from '../ui/ExperienceCards.vue';
 import AboutHeading from '../ui/AboutHeading.vue';
 
@@ -47,7 +47,7 @@ const education = ref([
 
 <template>
     <div class="px-6 sm:px-10 lg:px-16 pb-16">
-        <AboutHeading>Working Experience</AboutHeading>
+        <AboutHeading>{{ $t('aboutPage.experience.title') }}</AboutHeading>
         <div class="w-full flex justify-center">
             <div class="max-w-4xl">
                 <!-- Experience Items -->
@@ -60,7 +60,7 @@ const education = ref([
         </div>
 
         <!-- Education Section -->
-        <AboutHeading class="mt-20">Education</AboutHeading>
+        <AboutHeading class="mt-20">{{ $t('aboutPage.experience.education') }}</AboutHeading>
         <div class="w-full flex justify-center">
             <div class="max-w-4xl">
                 <!-- Education Items -->

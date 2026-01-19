@@ -1,6 +1,9 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { Icon } from '@iconify/vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const props = defineProps({
   isPageLoaded: {
@@ -26,14 +29,14 @@ const age = computed(() => {
   return currentYear - dob.getFullYear() + ' years old';
 });
 
-const aboutMeList = ref([
+const aboutMeList = computed(() => [
   {
     icon: 'solar:code-square-linear',
     text: 'A Laravel developer / Web developer',
   },
   {
     icon: 'solar:map-point-linear',
-    text: 'Currently live in Siem Reap, Cambodia',
+    text: t('about.info.location'),
   },
   {
     icon: 'solar:calendar-linear',
@@ -41,7 +44,7 @@ const aboutMeList = ref([
   },
   {
     icon: 'solar:heart-linear',
-    text: 'Single',
+    text: t('about.info.status'),
   },
 ]);
 
@@ -75,7 +78,7 @@ const aboutMeList = ref([
               'opacity-0 -translate-x-32': !sectionAnimations[1].active
             }"
           >
-            <h1 class="uppercase text-2xl sm:text-3xl lg:text-4xl xl:text-5xl leading-tight">Who am I</h1>
+            <h1 class="uppercase text-2xl sm:text-3xl lg:text-4xl xl:text-5xl leading-tight">{{ $t('about.title') }}</h1>
           </div>
   
           <!-- Separator Lines -->
@@ -99,7 +102,7 @@ const aboutMeList = ref([
             }"
           >
             <p class="text-xl sm:text-1xl lg:text-3xl text-green-700 dark:text-white/50 font-light leading-relaxed">
-              I'm <span class="font-bold">Darong Chan</span>
+              {{ $t('about.iam') }} <span class="font-bold">{{ $t('about.myname') }}</span>
             </p>
           </div>
   
@@ -112,7 +115,7 @@ const aboutMeList = ref([
             }"
           >
             <p class="text-sm sm:text-base lg:text-lg leading-relaxed max-w-2xl">
-              I love creating modern web experiences with cutting-edge technologies.
+              {{ $t('about.description') }}
             </p>
           </div>
   
@@ -152,7 +155,7 @@ const aboutMeList = ref([
                 <span class="absolute inset-0 transition-transform translate-x-0 translate-y-0 group-hover:translate-y-1.5 group-hover:translate-x-1.5 bg-green-400 dark:bg-green-600">
                 </span>
                 <span class="relative inline-block px-6 py-3 text-sm tracking-widest uppercase border-2 border-black text-black dark:text-gray-200 dark:border-gray-200">
-                  My story
+                  {{ $t('about.button') }}
                 </span>
               </div>
             </router-link>

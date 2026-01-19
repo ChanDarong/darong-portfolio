@@ -1,6 +1,9 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import AboutHeading from '../ui/AboutHeading.vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const isAnimated = ref(false);
 
@@ -19,15 +22,15 @@ onMounted(() => {
             'opacity-0': !isAnimated,
         }"
     >
-        <AboutHeading class="uppercase">Who I Am</AboutHeading>
+        <AboutHeading class="uppercase">{{ $t('aboutPage.whoIAm.title') }}</AboutHeading>
         <div class="relative z-10 flex flex-col md:flex-row w-full">
             <div class="w-full md:w-1/2">
                 <div class="my-3 md:my-10 max-md:mb-5">
                     <p class="mb-3">
-                        Hello! My name is CHAN Darong. I'm a web developer specializing in Laravel. I build websites, systems, and APIs with a focus on functionality, structure, and maintainability. I comfortable working with backend systems and database structures, with a strong focus on delivering reliable and efficient code. I enjoy solving complex problems and continuously improving existing systems.
+                        {{ $t('aboutPage.whoIAm.intro') }}
                     </p>
                     <p class="mb-3">
-                        Currently, I'm working full-time as a Laravel developer in Siem Reap, Cambodia. I contribute to the creation and maintenance of web applications, ensuring they meet high standards of performance and reliability.
+                        {{ $t('aboutPage.whoIAm.current') }}
                     </p>
                 </div>
             </div>
@@ -39,7 +42,7 @@ onMounted(() => {
                         </div>
                     </div>
                     <p class="text-gray-500 mt-3 text-sm">
-                        <i>BBU graduation ceremony, 09 Feb 2025 (PH Grand Hall)</i>
+                        <i>{{ $t('aboutPage.whoIAm.imageCaption') }}</i>
                     </p>
                 </div>
             </div>

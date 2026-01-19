@@ -63,7 +63,7 @@ const aboutMeList = ref([
             }"
           >
             <!-- <h1 class="uppercase text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight">Who am I?</h1> -->
-            <h2 class="text-2xl sm:text-3xl md:text-5xl lg:text-7xl uppercase tracking-widest dark:text-white">Get in Touch</h2>
+            <h2 class="text-2xl sm:text-3xl md:text-5xl lg:text-7xl uppercase tracking-widest dark:text-white">{{ $t('contact.title') }}</h2>
           </div>
   
           <!-- Separator Lines -->
@@ -84,7 +84,7 @@ const aboutMeList = ref([
               'opacity-0 translate-y-16': !sectionAnimations[2].active
             }"
           >
-            <p class="mb-3 lg:mb-5">Feel free to reach out for collaborations or just a chat!</p>
+            <p class="mb-3 lg:mb-5">{{ $t('contact.subtitle') }}</p>
             <h5 class="text-xl lg:text-2xl">chandarong333@gmail.com</h5>
           </div>
   
@@ -114,15 +114,15 @@ const aboutMeList = ref([
           }"
           action="https://formspree.io/f/mayvlrze" method="POST">
           <div class="mb-3 lg:mb-6">
-            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Name</label>
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $t('contact.form.name') }}</label>
             <Input type="text" id="name" name="name" required />
           </div>
           <div class="mb-3 lg:mb-6">
-            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email</label>
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $t('contact.form.email') }}</label>
             <Input type="email" id="email" name="email" required />
           </div>
           <div class="mb-3 lg:mb-6">
-            <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Message</label>
+            <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $t('contact.form.message') }}</label>
             <TextArea id="message" name="message" rows="4" required />
           </div>
           <!-- Button -->
@@ -138,7 +138,7 @@ const aboutMeList = ref([
                 <span class="absolute inset-0 transition-transform translate-x-0 translate-y-0 group-hover:translate-y-1.5 group-hover:translate-x-1.5 bg-green-400 dark:bg-green-600">
                 </span>
                 <span class="relative inline-block px-6 py-3 text-sm tracking-widest uppercase border-2 border-black text-black dark:text-gray-200 dark:border-gray-200">
-                  Send Message
+                  {{ $t('contact.form.send') }}
                 </span>
               </div>
             </button>

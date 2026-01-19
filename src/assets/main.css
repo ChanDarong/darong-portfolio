@@ -123,14 +123,65 @@
   font-display: swap;
 }
 
+/* Kantumruy pro */
+@font-face {
+  font-family: 'Kantumruy Pro';
+  src: url('../Fonts/Kantumruy-Pro/KantumruyPro-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Kantumruy Pro';
+  src: url('../Fonts/Kantumruy-Pro/KantumruyPro-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Kantumruy Pro';
+  src: url('../Fonts/Kantumruy-Pro/KantumruyPro-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Kantumruy Pro';
+  src: url('../Fonts/Kantumruy-Pro/KantumruyPro-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Kantumruy Pro';
+  src: url('../Fonts/Kantumruy-Pro/KantumruyPro-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Kantumruy Pro';
+  src: url('../Fonts/Kantumruy-Pro/KantumruyPro-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Kantumruy Pro';
+  src: url('../Fonts/Kantumruy-Pro/KantumruyPro-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Apply Poppins as default font */
 html {
   overflow-x: hidden;
-  font-family: 'Futura PT', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family: 'Futura PT', 'Kantumruy Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
 body {
-  font-family: 'Futura PT', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family: 'Futura PT', 'Kantumruy Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
 /* Custom utility class similar to Tailwind */

@@ -1,5 +1,10 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { locale } = useI18n()
+
+const currentLocale = computed(() => locale.value)
 
 const props = defineProps({
   isPageLoaded: {
@@ -31,6 +36,7 @@ const props = defineProps({
           'transition-delay': isInitialLoad && sectionAnimations[0].active ? '300ms' : '50ms'
         }"
       >
+        <!-- <code class="dark:text-green-600">Hello, I'm</code> -->
         <code class="dark:text-green-600">Hello, I'm</code>
       </div>
 
@@ -43,7 +49,7 @@ const props = defineProps({
         }"
       >
         <h1 class="uppercase text-5xl sm:text-7xl md:text-8xl font-semibold w-fit relative">
-          <span class="relative z-2">Darong</span>
+          <span class="relative z-2">{{ currentLocale == 'km' ? 'ចាន់ ដារុង' : 'Darong' }}</span>
           <span
             class="absolute bg-green-400 dark:bg-green-600 h-[65%] w-[60%] -left-5 bottom-0 transition-all duration-500"
             :class="{
@@ -52,7 +58,7 @@ const props = defineProps({
             }"
           ></span>
         </h1>
-        <h1 class="uppercase text-5xl sm:text-7xl md:text-8xl font-semibold">Chan</h1>
+        <h1 class="uppercase text-5xl sm:text-7xl md:text-8xl font-semibold" v-if="currentLocale == 'en'">Chan</h1>
       </div>
 
       <!-- Separator Line -->
@@ -88,7 +94,7 @@ const props = defineProps({
         }"
       >
         <p class="text-sm sm:text-base">
-          I build clean, efficient web applications with Laravel.
+          {{ $t('hero.subtitle') }}
         </p>
       </div>
 
@@ -105,7 +111,7 @@ const props = defineProps({
             <span class="absolute inset-0 transition-transform translate-x-0 translate-y-0 group-hover:translate-y-1.5 group-hover:translate-x-1.5 bg-green-400 dark:bg-green-600">
             </span>
             <span class="relative inline-block px-6 py-3 text-sm tracking-widest uppercase border-2 border-black text-black dark:text-gray-200 dark:border-gray-200">
-              Explore Articles
+              {{ $t('hero.button') }}
             </span>
           </div>
         </a>
