@@ -47,7 +47,7 @@
             :class="{ 'menu-item-animate': showMenuItems }"
             :style="{ 'animation-delay': `${index * 0.1}s` }"
           >
-            <a :href="item.href" @click="closeMenu">{{ item.name }}</a>
+            <router-link :to="item.href" @click="closeMenu">{{ item.name }}</router-link>
           </li>
           <li class="mt-10 text-center">
             <!-- Social link -->
