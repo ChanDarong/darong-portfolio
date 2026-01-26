@@ -3,6 +3,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import HeroSection from '@/components/home/HeroSection.vue'
 import AboutSection from '@/components/home/AboutSection.vue'
 import ContactSection from '@/components/home/ContactSection.vue'
+import ProjectSection from '@/components/home/ProjectSection.vue'
 
 const currentSection = ref(0)
 const sections = ref([])
@@ -22,6 +23,7 @@ const wheelThreshold = 50 // Minimum accumulated scroll to trigger navigation
 
 // Animation states for each section
 const sectionAnimations = ref([
+  { active: false, delay: 0 },
   { active: false, delay: 0 },
   { active: false, delay: 0 },
   { active: false, delay: 0 }
@@ -220,8 +222,15 @@ onUnmounted(() => {
         :isInitialLoad="isInitialLoad"
       />
 
-      <!-- Section 3: Contact -->
-       <ContactSection
+      <!-- Section 3: Project -->
+      <ProjectSection
+        :isPageLoaded="isPageLoaded"
+        :sectionAnimations="sectionAnimations"
+        :isInitialLoad="isInitialLoad"
+      />
+
+      <!-- Section 4: Contact -->
+      <ContactSection
         :isPageLoaded="isPageLoaded"
         :sectionAnimations="sectionAnimations"
         :isInitialLoad="isInitialLoad"
@@ -241,7 +250,7 @@ onUnmounted(() => {
       class="fixed bottom-0 right-4 left-auto sm:left-8 sm:right-auto flex flex-col items-center text-gray-500 transition-all duration-700"
       :class="{
         'translate-y-0': isPageLoaded && !isScrolling,
-        'translate-y-100 delay-0': isScrolling || sectionAnimations[1]?.active || sectionAnimations[2]?.active
+        'translate-y-100 delay-0': isScrolling || !sectionAnimations[0]?.active
       }"
     >
       <div class="text-xs font-light tracking-widest mb-4 transform writing-mode-vertical dark:text-gray-200" style="writing-mode: vertical-rl; text-orientation: mixed;">

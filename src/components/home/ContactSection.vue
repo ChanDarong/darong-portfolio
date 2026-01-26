@@ -19,34 +19,6 @@ const props = defineProps({
   }
 })
 
-const dob = new Date(2002, 9, 26);
-
-const dobString = '26 October 2002';
-
-const age = computed(() => {
-  const currentYear = new Date().getFullYear();
-  return currentYear - dob.getFullYear() + ' years old';
-});
-
-const aboutMeList = ref([
-  {
-    icon: 'solar:code-square-linear',
-    text: 'A Laravel developer / Web developer',
-  },
-  {
-    icon: 'solar:map-point-linear',
-    text: 'Currently live in Siem Reap, Cambodia',
-  },
-  {
-    icon: 'solar:calendar-linear',
-    text: dobString + ' (' + age.value + ')',
-  },
-  {
-    icon: 'solar:heart-linear',
-    text: 'Single',
-  },
-]);
-
 </script>
 
 <template>
@@ -58,8 +30,8 @@ const aboutMeList = ref([
           <div
             class="tracking-[0.15em] sm:tracking-[0.3em] lg:tracking-[0.5em] transition-all duration-700 delay-300"
             :class="{
-              'opacity-100 translate-x-0': sectionAnimations[2].active,
-              'opacity-0 -translate-x-32': !sectionAnimations[2].active
+              'opacity-100 translate-x-0': sectionAnimations[3].active,
+              'opacity-0 -translate-x-32': !sectionAnimations[3].active
             }"
           >
             <!-- <h1 class="uppercase text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight">Who am I?</h1> -->
@@ -70,8 +42,8 @@ const aboutMeList = ref([
           <div
             class="separate-line my-3 transition-all duration-700 delay-500"
             :class="{
-              'opacity-100 translate-x-0': sectionAnimations[2].active,
-              'opacity-0 -translate-x-16': !sectionAnimations[2].active
+              'opacity-100 translate-x-0': sectionAnimations[3].active,
+              'opacity-0 -translate-x-16': !sectionAnimations[3].active
             }"
           >
             <div class="separate-line mt-3 mb-3 sm:mt-5 sm:mb-5 w-20 sm:w-20 h-1 bg-black dark:bg-white"></div>
@@ -80,8 +52,8 @@ const aboutMeList = ref([
   
           <div class="mb-3 lg:mb-8 transition-all duration-700"
             :class="{
-              'opacity-100 translate-y-0 delay-500': sectionAnimations[2].active,
-              'opacity-0 translate-y-16': !sectionAnimations[2].active
+              'opacity-100 translate-y-0 delay-500': sectionAnimations[3].active,
+              'opacity-0 translate-y-16': !sectionAnimations[3].active
             }"
           >
             <p class="mb-3 lg:mb-5">{{ $t('contact.subtitle') }}</p>
@@ -91,8 +63,8 @@ const aboutMeList = ref([
           <!-- Social link -->
           <div class="flex items-center transition-all duration-700"
             :class="{
-              'opacity-100 translate-y-0 delay-700': sectionAnimations[2].active,
-              'opacity-0 translate-y-16': !sectionAnimations[2].active
+              'opacity-100 translate-y-0 delay-700': sectionAnimations[3].active,
+              'opacity-0 translate-y-16': !sectionAnimations[3].active
             }"
           >
             <a href="https://t.me/DarongCHAN" target="_blank" class="p-2 transition-colors scale-70 lg:scale-100 mr-2 lg:mr-5" aria-label="Telegram">
@@ -109,8 +81,8 @@ const aboutMeList = ref([
       <div class="w-full">
         <form class="mt-5 max-w-lg ml-20 max-md:ml-0 transition-all duration-700"
           :class="{
-            'opacity-100 translate-y-0 delay-500': sectionAnimations[2].active && isPageLoaded,
-            'opacity-0 translate-y-16': !sectionAnimations[2].active || !isPageLoaded
+            'opacity-100 translate-y-0 delay-500': sectionAnimations[3].active && isPageLoaded,
+            'opacity-0 translate-y-16': !sectionAnimations[3].active || !isPageLoaded
           }"
           action="https://formspree.io/f/mayvlrze" method="POST">
           <div class="mb-3 lg:mb-6">
@@ -129,8 +101,8 @@ const aboutMeList = ref([
           <div
             class="mt-5 lg:mt-10 transition-all duration-700"
             :class="{
-              'opacity-100 translate-y-0 delay-1000': sectionAnimations[2].active && isPageLoaded,
-              'opacity-0 translate-y-16': !sectionAnimations[2].active || !isPageLoaded
+              'opacity-100 translate-y-0 delay-1000': sectionAnimations[3].active && isPageLoaded,
+              'opacity-0 translate-y-16': !sectionAnimations[3].active || !isPageLoaded
             }"
           >
             <button type="submit" class="inline-block">
