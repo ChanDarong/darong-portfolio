@@ -38,7 +38,10 @@ const en = {
                 name: 'Name',
                 email: 'Email',
                 message: 'Message',
-                send: 'Send Message'
+                send: 'Send Message',
+                sending: 'Sending...',
+                success: 'Message sent successfully!',
+                error: 'Failed to send message. Please try again.'
             }
         },
         // About Page

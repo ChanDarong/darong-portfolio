@@ -1,10 +1,10 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 import { Icon } from '@iconify/vue';
 import Input from '../ui/form/Input.vue';
 import TextArea from '../ui/form/TextArea.vue';
 
-const props = defineProps({
+defineProps({
   isPageLoaded: {
     type: Boolean,
     default: false
@@ -19,6 +19,40 @@ const props = defineProps({
   }
 })
 
+const isSubmitting = ref(false)
+const submitStatus = ref(null)
+
+const handleSubmit = async (e) => {
+  e.preventDefault()
+  isSubmitting.value = true
+  submitStatus.value = null
+
+  const formData = new FormData(e.target)
+  const data = {
+    name: formData.get('name'),
+    email: formData.get('email'),
+    message: formData.get('message')
+  }
+
+  try {
+    const res = await fetch('/api/send-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+
+    if (res.ok) {
+      submitStatus.value = 'success'
+      e.target.reset()
+    } else {
+      submitStatus.value = 'error'
+    }
+  } catch {
+    submitStatus.value = 'error'
+  } finally {
+    isSubmitting.value = false
+  }
+}
 </script>
 
 <template>
@@ -79,12 +113,12 @@ const props = defineProps({
 
       <!-- Contact Form -->
       <div class="w-full">
-        <form class="mt-5 max-w-lg ml-20 max-md:ml-0 transition-all duration-700"
+        <form @submit="handleSubmit" class="mt-5 max-w-lg ml-20 max-md:ml-0 transition-all duration-700"
           :class="{
             'opacity-100 translate-y-0 delay-500': sectionAnimations[3].active && isPageLoaded,
             'opacity-0 translate-y-16': !sectionAnimations[3].active || !isPageLoaded
           }"
-          action="https://formspree.io/f/mayvlrze" method="POST">
+        >
           <div class="mb-3 lg:mb-6">
             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $t('contact.form.name') }}</label>
             <Input type="text" id="name" name="name" required />
@@ -105,15 +139,17 @@ const props = defineProps({
               'opacity-0 translate-y-16': !sectionAnimations[3].active || !isPageLoaded
             }"
           >
-            <button type="submit" class="inline-block">
+<button type="submit" :disabled="isSubmitting" class="inline-block disabled:opacity-50">
               <div class="relative inline-block group focus:outline-none focus:ring cursor-pointer">
                 <span class="absolute inset-0 transition-transform translate-x-0 translate-y-0 group-hover:translate-y-1.5 group-hover:translate-x-1.5 bg-green-400 dark:bg-green-600">
                 </span>
                 <span class="relative inline-block px-6 py-3 text-sm tracking-widest uppercase border-2 border-black text-black dark:text-gray-200 dark:border-gray-200">
-                  {{ $t('contact.form.send') }}
+                  {{ isSubmitting ? $t('contact.form.sending') : $t('contact.form.send') }}
                 </span>
               </div>
             </button>
+            <p v-if="submitStatus === 'success'" class="mt-4 text-green-600 dark:text-green-400">{{ $t('contact.form.success') }}</p>
+            <p v-if="submitStatus === 'error'" class="mt-4 text-red-600 dark:text-red-400">{{ $t('contact.form.error') }}</p>
           </div>
         </form>
       </div>
