@@ -74,10 +74,10 @@ import LanguageSwitcher from './LanguageSwitcher.vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
+const emit = defineEmits(['showToast'])
 
 const isMenuOpen = ref(false)
 const showMenuItems = ref(false)
-const isDarkMode = ref(false)
 
 const menuItems = computed(() => [
   { name: t('menu.about'), href: '/about' },
@@ -92,7 +92,7 @@ const toggleMenu = () => {
     closeMenu()
   } else {
     isMenuOpen.value = true
-    showMenuItems.value = false // Reset menu items animation
+    showMenuItems.value = false
   }
 }
 
@@ -102,12 +102,10 @@ const closeMenu = () => {
 }
 
 const animateMenuItems = () => {
-  // Trigger menu items animation after off-canvas is fully visible
   setTimeout(() => {
     showMenuItems.value = true
   }, 50)
 }
-
 </script>
 
 <style scoped>

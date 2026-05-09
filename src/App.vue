@@ -1,7 +1,13 @@
 <template>
   <div class="min-h-screen bg-amber-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col transition-all duration-500">
-    <!-- Navigation Header -->
-    <Header/>
+    <Toast
+      :show="toast.show"
+      :type="toast.type"
+      :message="toast.message"
+      @close="toast.show = false"
+    />
+
+    <Header @show-toast="showToast" />
 
     <main class="flex-1 relative z-1">
       <router-view />
@@ -10,24 +16,20 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { reactive } from 'vue'
 import Header from './components/Header.vue'
+import Toast from './components/ui/Toast.vue'
 
-// Mobile menu state
-const mobileMenuOpen = ref(false)
+const toast = reactive({
+  show: false,
+  type: 'success',
+  message: ''
+})
 
-// Toggle mobile menu
-const toggleMobileMenu = () => {
-  mobileMenuOpen.value = !mobileMenuOpen.value
-}
-
-// Scroll to projects section
-const scrollToProjects = () => {
-  // Add smooth scroll behavior to projects section
-  const projectsSection = document.getElementById('projects')
-  if (projectsSection) {
-    projectsSection.scrollIntoView({ behavior: 'smooth' })
-  }
+const showToast = (type, message) => {
+  toast.type = type
+  toast.message = message
+  toast.show = true
 }
 </script>
 

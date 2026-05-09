@@ -40,6 +40,7 @@ const en = {
                 message: 'Message',
                 send: 'Send Message',
                 sending: 'Sending...',
+                sent: 'Sent!',
                 success: 'Message sent successfully!',
                 error: 'Failed to send message. Please try again.'
             }

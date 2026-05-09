@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, inject } from 'vue';
 import { Icon } from '@iconify/vue';
 import Input from '../ui/form/Input.vue';
 import TextArea from '../ui/form/TextArea.vue';
@@ -19,11 +19,15 @@ defineProps({
   }
 })
 
+const showToast = inject('showToast')
+
 const isSubmitting = ref(false)
 const submitStatus = ref(null)
 
 const handleSubmit = async (e) => {
   e.preventDefault()
+  if (isSubmitting.value) return
+
   isSubmitting.value = true
   submitStatus.value = null
 
@@ -44,13 +48,18 @@ const handleSubmit = async (e) => {
     if (res.ok) {
       submitStatus.value = 'success'
       e.target.reset()
+      showToast('success', 'Message sent successfully!')
     } else {
       submitStatus.value = 'error'
+      showToast('error', 'Failed to send message. Please try again.')
     }
   } catch {
     submitStatus.value = 'error'
+    showToast('error', 'Failed to send message. Please try again.')
   } finally {
-    isSubmitting.value = false
+    setTimeout(() => {
+      isSubmitting.value = false
+    }, 2000)
   }
 }
 </script>
@@ -68,11 +77,9 @@ const handleSubmit = async (e) => {
               'opacity-0 -translate-x-32': !sectionAnimations[3].active
             }"
           >
-            <!-- <h1 class="uppercase text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight">Who am I?</h1> -->
             <h2 class="text-2xl sm:text-3xl md:text-5xl lg:text-7xl uppercase tracking-widest dark:text-white">{{ $t('contact.title') }}</h2>
           </div>
-  
-          <!-- Separator Lines -->
+
           <div
             class="separate-line my-3 transition-all duration-700 delay-500"
             :class="{
@@ -83,7 +90,7 @@ const handleSubmit = async (e) => {
             <div class="separate-line mt-3 mb-3 sm:mt-5 sm:mb-5 w-20 sm:w-20 h-1 bg-black dark:bg-white"></div>
             <div class="separate-line mt-3 mb-3 sm:mt-5 sm:mb-5 w-20 sm:w-20 h-1 bg-black dark:bg-white relative left-8 sm:left-15"></div>
           </div>
-  
+
           <div class="mb-3 lg:mb-8 transition-all duration-700"
             :class="{
               'opacity-100 translate-y-0 delay-500': sectionAnimations[3].active,
@@ -93,8 +100,7 @@ const handleSubmit = async (e) => {
             <p class="mb-3 lg:mb-5">{{ $t('contact.subtitle') }}</p>
             <h5 class="text-xl lg:text-2xl">chandarong333@gmail.com</h5>
           </div>
-  
-          <!-- Social link -->
+
           <div class="flex items-center transition-all duration-700"
             :class="{
               'opacity-100 translate-y-0 delay-700': sectionAnimations[3].active,
@@ -131,7 +137,7 @@ const handleSubmit = async (e) => {
             <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $t('contact.form.message') }}</label>
             <TextArea id="message" name="message" rows="4" required />
           </div>
-          <!-- Button -->
+
           <div
             class="mt-5 lg:mt-10 transition-all duration-700"
             :class="{
@@ -139,20 +145,57 @@ const handleSubmit = async (e) => {
               'opacity-0 translate-y-16': !sectionAnimations[3].active || !isPageLoaded
             }"
           >
-<button type="submit" :disabled="isSubmitting" class="inline-block disabled:opacity-50">
-              <div class="relative inline-block group focus:outline-none focus:ring cursor-pointer">
-                <span class="absolute inset-0 transition-transform translate-x-0 translate-y-0 group-hover:translate-y-1.5 group-hover:translate-x-1.5 bg-green-400 dark:bg-green-600">
-                </span>
-                <span class="relative inline-block px-6 py-3 text-sm tracking-widest uppercase border-2 border-black text-black dark:text-gray-200 dark:border-gray-200">
-                  {{ isSubmitting ? $t('contact.form.sending') : $t('contact.form.send') }}
-                </span>
-              </div>
+            <button
+              type="submit"
+              :disabled="isSubmitting"
+              class="relative inline-block group focus:outline-none focus:ring disabled:cursor-not-allowed"
+            >
+              <span
+                class="absolute inset-0 bg-green-400 dark:bg-green-600 transition-transform"
+                :class="{
+                  'translate-x-0 translate-y-0 group-hover:translate-y-1.5 group-hover:translate-x-1.5': submitStatus !== 'success',
+                  'translate-x-0 translate-y-0': submitStatus === 'success'
+                }"
+              >
+              </span>
+
+              <span
+                class="relative inline-flex items-center gap-2 px-6 py-3 text-sm tracking-widest uppercase border-2 border-black dark:border-gray-200 text-black dark:text-gray-200 transition-all"
+              >
+                <Icon
+                  v-if="isSubmitting && submitStatus !== 'success'"
+                  icon="lucide:loader-2"
+                  class="w-4 h-4 animate-spin"
+                />
+                <Icon
+                  v-else-if="submitStatus === 'success'"
+                  icon="lucide:check"
+                  class="w-4 h-4 animate-[scale-in_0.3s_ease-out]"
+                />
+                <span v-if="submitStatus === 'success'">{{ $t('contact.form.sent') }}</span>
+                <span v-else-if="isSubmitting">{{ $t('contact.form.sending') }}</span>
+                <span v-else>{{ $t('contact.form.send') }}</span>
+              </span>
             </button>
-            <p v-if="submitStatus === 'success'" class="mt-4 text-green-600 dark:text-green-400">{{ $t('contact.form.success') }}</p>
-            <p v-if="submitStatus === 'error'" class="mt-4 text-red-600 dark:text-red-400">{{ $t('contact.form.error') }}</p>
           </div>
         </form>
       </div>
     </div>
   </section>
 </template>
+
+<style scoped>
+@keyframes scale-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+</style>
