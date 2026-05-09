@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue'
+import { reactive, provide } from 'vue'
 import Header from './components/Header.vue'
 import Toast from './components/ui/Toast.vue'
 
@@ -31,6 +31,8 @@ const showToast = (type, message) => {
   toast.message = message
   toast.show = true
 }
+
+provide('showToast', showToast)
 </script>
 
 <style scoped>
